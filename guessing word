@@ -1,0 +1,47 @@
+
+
+word = "ELEPHANT"
+
+def guess_match(guess, display):
+        while word != display:
+            if guess in display:
+                print("already exists, try another letter")
+
+                guess_word(display)
+
+            if guess in word:
+                ind = []
+                for i in range(len(word)):
+                    if word[i] == guess:
+                        ind.append(i)
+                word_list = list(word)
+                display_list = list(display)
+                for j in ind:
+                    display_list[j] = word_list[j]
+                    display = "".join(display_list)
+                print(display)
+                if display == word:
+                    print("you won, game ends")
+                    exit()
+                else:
+                    guess_match(guess_word(display),display)
+
+            else:
+                print("Try again")
+                print(display)
+                guess_match(guess_word(display), display)
+
+
+def guess_word(display):
+    guess = input("guess a letter: ").upper()
+    return guess_match(guess, display)
+
+
+def play_game():
+    display = "-"*len(word)
+    print(display)
+    guess_word(display)
+
+play_game()
+
+
